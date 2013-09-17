@@ -14,12 +14,9 @@ def index(request):
     template=loader.get_template('picture/index.html/')
     context= { "picture1": picture1,"picture2":picture2}
     return render(request, 'picture/index.html',context)
-def allah(request):
+def rate(request):
     info=request.GET
-    f=open("debug.txt","a")
-    print "allah"
-    f.write(info+"\n")
-    info=info[string.find(info,"?"):]
-    f.write(info+"\n")
-    f.close()
+    print info.values()[0]
+
+
     return index(request)

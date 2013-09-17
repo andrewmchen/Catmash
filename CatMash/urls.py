@@ -7,9 +7,13 @@ import os
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', include('picture.urls')),
-    url(r'^picture$', include('picture.urls')),
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.getenv('STATIC_DIR')})
+    #url(r'^$', include('picture.urls')),
+    url(r'^picture$', 'picture.views.rate'),
+    url(r'^static/(?P<path>.*)$',
+        'django.views.static.serve',
+        {'document_root': os.getenv('STATIC_DIR')}
+    ),
+    url(r'^$', 'picture.views.index')
 
 
     # url(r'^CatMash/', include('CatMash.foo.urls')),
