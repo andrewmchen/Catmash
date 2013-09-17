@@ -1,4 +1,5 @@
 # Django settings for CatMash project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,10 +10,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(PROJECT_PATH, 'pictures.db')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/Andrew/Documents/CatMash/CatMash/pictures.db',                      # Or path to database file if using sqlite3.
+        'NAME': DATABASE_PATH,
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -67,9 +71,10 @@ STATIC_ROOT = '/static/'
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+DATABASE_PATH = os.path.join(PROJECT_PATH, 'pictures.db')
 # Additional locations of static files
 STATICFILES_DIRS = (
-        "/Users/Andrew/Documents/CatMash/static/",
+    os.path.join(PROJECT_PATH, '../static')
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -125,7 +130,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'picture'
+    'catmash'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
