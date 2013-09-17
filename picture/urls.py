@@ -1,4 +1,4 @@
 from django.conf.urls import patterns,url
-from picture import views
+import views
 
-urlpatterns = patterns('',url(r'^$',views.index,name='index'))
+urlpatterns = patterns('',url(r'^picture$','views.allah'),url(r'^$',"views.index"))
