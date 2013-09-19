@@ -21,25 +21,26 @@ def index(request):
     try:
         ###Generate how many people agree with you.
         info=request.GET
-        people_who_agree = agree(info.__getitem__('picture1'), info.__getitem__('picture2')) 
+        people_who_agree = agree(info.__getitem__('picture1'), info.__getitem__('picture2'))
         ###
         last_win_picture = pictures.objects.filter(url=info.__getitem__('picture1'))[0] ###Finds the picture that you last clicked
         clicks = last_win_picture.clicks
-        context= { "picture1": picture1,"picture2":picture2,"people_who_agree":people_who_agree, "clicks":clicks}
+        context = {"picture1": picture1, "picture2": picture2, "people_who_agree": people_who_agree, "clicks": clicks}
         return render(request, 'catmash/indexwithclicks.html', context)
     except:
-        context= { "picture1": picture1,"picture2":picture2}
+        context = {"picture1": picture1, "picture2" :picture2}
         return render(request, 'catmash/index.html',context)
-def top(request):
+
+def top(request, field='-rating'):
     number=10   #number of entries to display
     info = request.GET
     try: #try getting a number info item
         starting = int(info.__getitem__('number'))
         print starting
-        pictures_by_rating = pictures.objects.order_by('rating')[starting:starting+10]
+        pictures_by_rating = pictures.objects.order_by(field)[starting:starting+10]
     except:
         print "did not get request"
-        pictures_by_rating = pictures.objects.order_by('rating')[:10]
+        pictures_by_rating = pictures.objects.order_by(field)[:10]
     context = { "pictures_by_rating": pictures_by_rating}
     return render(request, 'catmash/top.html', context)
 
@@ -48,17 +49,13 @@ def rate(request):
     print info.__getitem__('picture1')
     adjust(info.__getitem__('picture1'), info.__getitem__('picture2')) #change the ratings
     print info.__getitem__('picture1')
-    #add 1 click to each picture
-    picture1=pictures.objects.filter(url = info.__getitem__('picture1'))[0]
 
-    picture2=pictures.objects.filter(url = info.__getitem__('picture2'))[0]
+    #add 1 click to each picture
+    picture1 = pictures.objects.filter(url = info.__getitem__('picture1'))[0]
+    picture2 = pictures.objects.filter(url = info.__getitem__('picture2'))[0]
     ###Adding 1 click each
-    clicks1=picture1.clicks
-    clicks2=picture2.clicks
-    clicks1+=1
-    clicks2+=1
-    picture1.clicks=clicks1
-    picture2.clicks=clicks2
+    picture1.clicks += 1
+    picture2.clicks += 1
     picture1.save()
     picture2.save()
 

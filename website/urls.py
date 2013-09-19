@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     #url(r'^$', include('picture.urls')),
     url(r'^catmash', include('catmash.urls')), #ajax fetch link
     url(r'^top','catmash.views.top'),
+    url(r'^trending$', 'catmash.views.top', { 'field': '-clicks'}),
     url(r'^static/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': os.getenv('STATIC_DIR')}

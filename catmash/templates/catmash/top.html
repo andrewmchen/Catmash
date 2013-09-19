@@ -14,10 +14,10 @@
 
 	<div id="list">
 		{% for picture in pictures_by_rating %}
-		<div class="pictures"><img src="{{picture.url}}" width=480px height=480px></div>
+		<div class="pictures"><img src="{{picture.url}}" width=480px height=480px> rating:{{picture.rating}}, clicks:{{picture.clicks}}</div>
 		{% endfor %}
 	</div>
-	
+
 </body>
 </html>
 

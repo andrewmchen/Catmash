@@ -16,18 +16,18 @@ float: center;
 }
 
 .roundedbottom {
-    background: #109010;
+    background: #FFA319;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     text-align: center;
 }
 .roundedleft{
-    background: #446bb3;
+    background: #FFBF5E;
     border-bottom-left-radius: 20px;
     text-align: center;
 }
 .roundedright{
-    background: #446bb3;
+    background: #FFBF5E;
     border-bottom-right-radius: 20px;
     text-align: center;
 }
