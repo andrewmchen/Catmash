@@ -24,3 +24,16 @@ def adjust(winner,loser): #parameters are the urls
     winner_object.save()
     loser_object.save()
 
+###determines how many people agree with you
+def agree(winner,loser): #parameters are urls
+    winner_object = pictures.objects.filter(url=winner)[0]
+    winner_rating = winner_object.rating
+    loser_object = pictures.objects.filter(url=loser)[0]
+    loser_rating = loser_object.rating
+
+    #calculate expected score
+    winner_expected = 1.0 / (1 + 10**((loser_rating - winner_rating)/400.))
+    winner_clicks = winner_expected*winner_object.clicks
+    #return how many people agree with you
+    winner_clicks = (int)(winner_clicks+0.5)
+    return (winner_clicks)

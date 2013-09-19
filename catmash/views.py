@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 from django.shortcuts import render
 
 from catmash.models import pictures
-from catmash.eloscript import adjust
+from catmash.eloscript import adjust, agree
 
 import string
 import random
@@ -18,9 +18,18 @@ def index(request):
         picture2 = latest_picture_list[:1].get()
         picture1 = latest_picture_list[:1].get()
     template = loader.get_template('catmash/index.html/')
-    print "index"
-    context= { "picture1": picture1,"picture2":picture2}
-    return render(request, 'catmash/index.html',context)
+    try:
+        ###Generate how many people agree with you.
+        info=request.GET
+        people_who_agree = agree(info.__getitem__('picture1'), info.__getitem__('picture2')) 
+        ###
+        last_win_picture = pictures.objects.filter(url=info.__getitem__('picture1'))[0] ###Finds the picture that you last clicked
+        clicks = last_win_picture.clicks
+        context= { "picture1": picture1,"picture2":picture2,"people_who_agree":people_who_agree, "clicks":clicks}
+        return render(request, 'catmash/indexwithclicks.html', context)
+    except:
+        context= { "picture1": picture1,"picture2":picture2}
+        return render(request, 'catmash/index.html',context)
 def top(request):
     number=10   #number of entries to display
     info = request.GET
@@ -37,6 +46,20 @@ def top(request):
 def rate(request):
     info = request.GET
     print info.__getitem__('picture1')
-    adjust(info.__getitem__('picture1'), info.__getitem__('picture2'))
+    adjust(info.__getitem__('picture1'), info.__getitem__('picture2')) #change the ratings
     print info.__getitem__('picture1')
+    #add 1 click to each picture
+    picture1=pictures.objects.filter(url = info.__getitem__('picture1'))[0]
+
+    picture2=pictures.objects.filter(url = info.__getitem__('picture2'))[0]
+    ###Adding 1 click each
+    clicks1=picture1.clicks
+    clicks2=picture2.clicks
+    clicks1+=1
+    clicks2+=1
+    picture1.clicks=clicks1
+    picture2.clicks=clicks2
+    picture1.save()
+    picture2.save()
+
     return index(request)

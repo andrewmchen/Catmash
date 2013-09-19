@@ -6,5 +6,6 @@ import re
 class pictures(models.Model):
     url = models.CharField(max_length=40)
     rating = models.DecimalField(max_digits=10, decimal_places=5)
+    clicks = models.IntegerField()
     def __unicode__(self):
         return self.url+' rating of '+str(self.rating)
