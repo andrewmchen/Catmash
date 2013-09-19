@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="static/css/catmash.css">
 	<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="/static/js/script.js"></script>
+	<script type="text/javascript" src="static/js/script.js"></script>
 </head>
-<body>
+<body class="nomargin">
+<table align="center">
+	<tr>
+		<td width="20%" class="roundedleft">top trending help about</td>
+		<td width="30%" rowspan="2" class="roundedbottom"><font size="6">CatMash</font></td>
+		<td width="20%" class="roundedright">login logout settings profile</td>
+	</tr>
+	<tr>
+		<td class="noborder"></td>
+		<td class="noborder"></td>
+	</tr>
+</table>
+<br />
 <div id="selection">
 	<div id="pictures" style="text-align:center">
-    		<span id="picture1" style="float:center"><img src="{{picture1.url}}" width=480px height=480px></span>
-    		<span id="picture2" style="float:center"><img src="{{picture2.url}}" width=480px height=480px></span>
-	</div>
-	
+    	<img class="voteimage picture1" src="{{picture1.url}}" width=450px height=450px>
+    	<img class="voteimage picture2" src="{{picture2.url}}" width=450px height=450px>
+	</div
+>
 	<div id="rating" style="text-align:center">
 		<span id="picture1rating" style="position:relative; left:-60px;">"{{picture1.rating}}"</span>
 		<span id="picture2rating"> "{{picture2.rating}}"</span>
