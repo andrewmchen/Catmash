@@ -6,15 +6,15 @@ import string
 import random
 import re
 
-from picture.models import pictures
+from catmash.models import pictures
 def index(request):
     latest_picture_list=pictures.objects.all().order_by('?')[:2]
     picture2=latest_picture_list[:1].get()
     picture1=latest_picture_list[:1].get()
-    template=loader.get_template('picture/index.html/')
+    template=loader.get_template('catmash/index.html/')
     print "index"
     context= { "picture1": picture1,"picture2":picture2}
-    return render(request, 'picture/index.html',context)
+    return render(request, 'catmash/index.html',context)
 def rate(request):
     def adjust(winner,loser): #parameters are the urls
         winner_object=pictures.objects.filter(url=winner)[0]
