@@ -8,7 +8,8 @@ import os
 urlpatterns = patterns('',
     # Examples:
     #url(r'^$', include('picture.urls')),
-    url(r'^catmash', include('catmash.urls')),
+    url(r'^catmash', include('catmash.urls')), #ajax fetch link
+    url(r'^top','catmash.views.top'),
     url(r'^static/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': os.getenv('STATIC_DIR')}
