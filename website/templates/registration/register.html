@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<fmrm action="accounts/register" method="post"> {% csrf_token %}
+{{form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.username.errors }}
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password.errors}}
+        <label for="id_password">Password:</label>
+        {{ form.password }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.verify.errors }}
+        <label for="id_verify">  Verify Password:</label>
+        {{ form.verify }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.email.errors }}
+        <label for="id_email"> E-Mail</label>
+        {{ form.email }}
+    </div>
+
+      <input type="submit" value="Create the account">
+</form>
+{% if failed %}
+<div>
+    Your form is missing something. Please try again.
+</div>
+{% endif %}
+
+{% endblock %} 

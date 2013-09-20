@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.auth.views import login,logout
 import os
 
 # Uncomment the next two lines to enable the admin:
@@ -14,9 +15,11 @@ urlpatterns = patterns('',
     url(r'^trending$', 'catmash.views.top', { 'field': '-clicks'}),
     url(r'^static/(?P<path>.*)$',
         'django.views.static.serve',
-        {'document_root': os.getenv('STATIC_DIR')}
-    ),
-    url(r'^$', 'catmash.views.index')
+        {'document_root': os.getenv('STATIC_DIR')}),
+    url(r'^accounts/login$',login),
+    url(r'^accounts/logout$',logout),
+    url(r'^accounts/register$','website.views.register'),
+    url(r'^$', 'catmash.views.index'),
 
 
     # url(r'^CatMash/', include('CatMash.foo.urls')),
