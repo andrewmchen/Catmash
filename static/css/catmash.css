@@ -2,7 +2,7 @@ html, body {
     padding: 0;
     margin: 0 auto;
     /*border-left: 20px solid #cccccc;*/
-    /*width: 960px;*/
+    width: 960px;
     height: 100%;
     font-family: "Raleway", sans-serif;
 }
@@ -21,6 +21,27 @@ html, body {
     border-bottom-left-radius: 20px;
     text-align: center;
 }
+
+.inline {
+    display: inline-block;
+}
+
+.stats {
+    width: 100px;
+}
+
+.ratespace {
+    width: 160px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
 .roundedleft{
     background: #FFE880;
     /*border-bottom-left-radius: 20px;*/
@@ -38,6 +59,8 @@ html, body {
 }
 
 .picture {
+    margin: 10px;
+    display: inline;
     border: 1px solid transparent;
     -webkit-transition: border 0.1s linear, box-shadow 0.1s linear;
        -moz-transition: border 0.1s linear, box-shadow 0.1s linear;
@@ -55,7 +78,7 @@ html, body {
     position: fixed;
     bottom: 0;
     height: 50px;
-    width: 100%;
+    width: 960px;
     color: #dddddd;
     background: #bbbbbb;
     text-align: center;

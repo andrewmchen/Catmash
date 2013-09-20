@@ -9,7 +9,7 @@ function start()
     $(".picture").delegate(this,'click',function() {
         var picture1 = $(this).attr("src");
         // messy as shit but it condenses two identical functions
-        var picture2 = $("#"+(parseInt($(this).attr("class").split(" ").pop())=='pic1' ? 'pic2' : 'pic1')).attr("src");
+        var picture2 = $("#"+($(this).attr("id")=='pic1' ? 'pic2' : 'pic1')).attr("src");
         // change to object to make less janky later
         var returninfo = "picture1=" + picture1 + "&picture2=" + picture2
         $(this).toggleClass("active")

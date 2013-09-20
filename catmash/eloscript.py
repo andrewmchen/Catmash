@@ -9,8 +9,8 @@ def adjust(winner,loser): #parameters are the urls
     loser_rating = loser_object.rating
 
     # calculate expected score
-    winner_expected = 1.0 / (1 + 10**((loser_rating - winner_rating)/400.))
-    loser_expected = 1.0 / (1 + 10**((winner_rating - loser_rating)/400.))
+    winner_expected = 1.0 / (1. + 10.**((loser_rating - winner_rating)/400.))
+    loser_expected = 1.0 / (1. + 10.**((winner_rating - loser_rating)/400.))
 
     # update values and save
     winner_new = winner_rating + 32*(1 - winner_expected)

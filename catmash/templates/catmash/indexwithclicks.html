@@ -1,16 +1,12 @@
 <div id="selection">
-	<div id="pictures" style="text-align:center">
-    	<img id="pic1" class="voteimage picture" src="{{picture1.url}}" width=450px height=450px style="position:relative; left:-10%">
-    	<span>
-		people who agree = {{people_who_agree}}
-		clicks = {{clicks}}
-		</span>
-    	<img id="pic2" class="voteimage picture" src="{{picture2.url}}" width=450px height=450px style="position:relative; right:-10%">
-	</div>
-	<div id="rating" style="text-align:center">
-		<span id="picture1rating" style="position:relative; left:-10%;">"{{picture1.rating}}"</span>
-		<span id="picture2rating" style="position:relative; right:-10%;"> "{{picture2.rating}}"</span>
-	</div>
+    <div id="pictures" style="text-align:center">
+        <img id="pic1" class="voteimage picture" src="{{picture1.url}}" width=380px height=380px>
+        <div class="inline stats">people who agree = {{people_who_agree}} clicks = {{clicks}}</div>
+        <img id="pic2" class="voteimage picture" src="{{picture2.url}}" width=380px height=380px>
+    </div>
+    <div id="rating" style="text-align:center" class="info hidden">
+            <div id="rate1" class="inline rating">{{picture1.rating}}</div>
+            <div class="inline ratespace"></div>
+            <div id="rate2" class="inline rating">{{picture2.rating}}</div>
+    </div>
 </div>
-
-

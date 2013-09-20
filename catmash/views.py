@@ -20,7 +20,7 @@ def index(request):
     template = loader.get_template('catmash/index.html/')
     try:
         ###Generate how many people agree with you.
-        info=request.GET
+        info = request.GET
         people_who_agree = agree(info.__getitem__('picture1'), info.__getitem__('picture2'))
         ###
         last_win_picture = pictures.objects.filter(url=info.__getitem__('picture1'))[0] ###Finds the picture that you last clicked
@@ -29,7 +29,7 @@ def index(request):
         return render(request, 'catmash/indexwithclicks.html', context)
     except:
         context = {"picture1": picture1, "picture2" :picture2}
-        return render(request, 'catmash/index.html',context)
+        return render(request, 'catmash/index.html', context)
 
 def top(request, field='-rating'):
     number=10   #number of entries to display
