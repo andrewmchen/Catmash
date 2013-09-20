@@ -1,10 +1,10 @@
-
-
-.nomargin {
+html, body {
     padding: 0;
     margin: 0 auto;
-    width: 1200px;
-    font-family: "Open Sans", sans-serif;
+    /*border-left: 20px solid #cccccc;*/
+    /*width: 960px;*/
+    height: 100%;
+    font-family: "Raleway", sans-serif;
 }
 
 .noborder {
@@ -12,26 +12,59 @@
 }
 
 .centerspan {
-float: center;
+    float: center;
 }
 
 .roundedbottom {
-    background: #FFA319;
+    background: #F7D074;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     text-align: center;
 }
 .roundedleft{
-    background: #FFBF5E;
-    border-bottom-left-radius: 20px;
+    background: #FFE880;
+    /*border-bottom-left-radius: 20px;*/
     text-align: center;
 }
 .roundedright{
-    background: #FFBF5E;
-    border-bottom-right-radius: 20px;
+    background: #FFE880;
+    /*border-bottom-right-radius: 20px;*/
     text-align: center;
 }
 
 .voteimage {
     padding: 10px;
+    border-radius: 25px;
+}
+
+.picture {
+    border: 1px solid transparent;
+    -webkit-transition: border 0.1s linear, box-shadow 0.1s linear;
+       -moz-transition: border 0.1s linear, box-shadow 0.1s linear;
+            transition: border 0.1s linear, box-shadow 0.1s linear;
+}
+
+.picture.active {
+    border-color: blue;
+    -webkit-box-shadow: 0 0 5px blue;
+       -moz-box-shadow: 0 0 5px blue;
+            box-shadow: 0 0 5px blue;
+}
+
+.bottombar {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    color: #dddddd;
+    background: #bbbbbb;
+    text-align: center;
+}
+
+.about {
+    color: #000000;
+    font-weight: 600;
+    margin-top: 15px;
+    display: inline-block;
+    position: center;
 }
