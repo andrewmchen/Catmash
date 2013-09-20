@@ -11,7 +11,7 @@ import random
 import re
 from catmash.models import pictures
 
-def index(request):
+def index(request, extra=0):
     latest_picture_list = pictures.objects.all().order_by('?')[:2]
     picture1 = picture2 = 0
     while picture1 == picture2:
@@ -25,7 +25,11 @@ def index(request):
         ###
         last_win_picture = pictures.objects.filter(url=info.__getitem__('picture1'))[0] ###Finds the picture that you last clicked
         clicks = last_win_picture.clicks
-        context = {"picture1": picture1, "picture2": picture2, "people_who_agree": people_who_agree, "clicks": clicks}
+        context = { "picture1": picture1,
+                    "picture2": picture2,
+                    "people_who_agree": people_who_agree,
+                    "clicks": clicks,
+                    "data": extra}
         return render(request, 'catmash/indexwithclicks.html', context)
     except:
         context = {"picture1": picture1, "picture2" :picture2}
@@ -47,7 +51,7 @@ def top(request, field='-rating'):
 def rate(request):
     info = request.GET
     print info.__getitem__('picture1')
-    adjust(info.__getitem__('picture1'), info.__getitem__('picture2')) #change the ratings
+    winner, loser, delta = adjust(info.__getitem__('picture1'), info.__getitem__('picture2')) #change the ratings
     print info.__getitem__('picture1')
 
     #add 1 click to each picture
@@ -59,4 +63,4 @@ def rate(request):
     picture1.save()
     picture2.save()
 
-    return index(request)
+    return index(request, "%s,%s,%s" %(winner, loser, delta))

@@ -10,19 +10,20 @@ def adjust(winner,loser): #parameters are the urls
 
     # calculate expected score
     winner_expected = 1.0 / (1. + 10.**((loser_rating - winner_rating)/400.))
-    loser_expected = 1.0 / (1. + 10.**((winner_rating - loser_rating)/400.))
 
     # update values and save
-    winner_new = winner_rating + 32*(1 - winner_expected)
-    print("old score: %s, expected: %s, new score: %s" %(winner_object.rating, winner_expected, winner_new))
+    delta = 32*(1 - winner_expected)
+    winner_new = winner_rating + delta
+    #print("old score: %s, expected: %s, new score: %s" %(winner_object.rating, winner_expected, winner_new))
     winner_object.rating = winner_new
 
-    loser_new = loser_rating + 32*(0 - loser_expected)
-    print("old score: %s, expected: %s, new score: %s" %(loser_object.rating, loser_expected, loser_new))
+    loser_new = loser_rating - delta
+    #print("old score: %s, expected: %s, new score: %s" %(loser_object.rating, loser_expected, loser_new))
     loser_object.rating = loser_new
 
     winner_object.save()
     loser_object.save()
+    return winner_rating, loser_rating, delta
 
 ###determines how many people agree with you
 def agree(winner,loser): #parameters are urls

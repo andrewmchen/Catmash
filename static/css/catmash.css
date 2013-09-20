@@ -7,11 +7,15 @@ html, body {
     font-family: "Raleway", sans-serif;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .noborder {
     border: none;
 }
 
-.centerspan {
+.center {
     float: center;
 }
 
