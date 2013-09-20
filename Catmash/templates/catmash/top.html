@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="static/js/top.js"></script>
+</head>
+<body>
+	<div id="nextpage">
+		Next
+	</div>
+	<div id="backpage">
+		Back
+	</div>
+
+	<div id="list">
+		{% for picture in pictures_by_rating %}
+		<div class="pictures"><img src="{{picture.url}}" width=480px height=480px> rating:{{picture.rating}}, clicks:{{picture.clicks}}</div>
+		{% endfor %}
+	</div>
+
+</body>
+</html>
+
+
