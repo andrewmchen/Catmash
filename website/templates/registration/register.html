@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<fmrm action="accounts/register" method="post"> {% csrf_token %}
+<div id="register">
+<form action="register" method="post"> {% csrf_token %}
 {{form.non_field_errors }}
     <div class="fieldWrapper">
         {{ form.username.errors }}
@@ -28,9 +28,10 @@
       <input type="submit" value="Create the account">
 </form>
 {% if failed %}
-<div>
+<p>
     Your form is missing something. Please try again.
-</div>
+</p>
 {% endif %}
+</div>
 
 {% endblock %} 

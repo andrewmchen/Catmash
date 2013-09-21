@@ -9,7 +9,6 @@ import os
 urlpatterns = patterns('',
     # Examples:
     #url(r'^$', include('picture.urls')),
-    url(r'^users/',include('users.urls')),
     url(r'^catmash', include('catmash.urls')), #ajax fetch link
     url(r'^top','catmash.views.top'),
     url(r'^trending$', 'catmash.views.top', { 'field': '-clicks'}),
@@ -18,6 +17,7 @@ urlpatterns = patterns('',
         {'document_root': os.getenv('STATIC_DIR')}),
     url(r'^accounts/login$',login),
     url(r'^accounts/logout$',logout),
+    url(r'^accounts/profile$','website.views.profile'),
     url(r'^accounts/register$','website.views.register'),
     url(r'^$', 'catmash.views.index'),
 
