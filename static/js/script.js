@@ -23,8 +23,8 @@ function update(loser) {
     var delta = data.pop();
     var lose = data.pop();
     var win = data.pop();
-    console.log(loser);
-    console.log(winner);
+    console.log(lose);
+    console.log(win);
 
     var win_rate = $("#rate" + winner);
     var lose_rate = $("#rate" + loser);
@@ -32,22 +32,26 @@ function update(loser) {
     var lose_pic = $("#pic" + loser);
 
     win_rate.toggleClass("green");
-    win_rate.toggleClass("hidden");
-    win_rate.text(winner);
+    win_rate.text(win);
     lose_rate.toggleClass("red");
-    lose_rate.toggleClass("hidden");
-    lose_rate.text(loser);
+    lose_rate.text(lose);
+
+    $("#rating").toggleClass("hidden");
 
     setTimeout(function() {
         $("#selection").slideUp(300);
         setTimeout(function() {
             $("#pic1").replaceWith($("#p1"));
             $("#pic2").replaceWith($("#p2"));
+            $("#p1").attr("id", "pic1");
+            $("#p2").attr("id", "pic2");
             $("#selectiontemp").empty();
         }, 300);
         $("#selection").fadeIn(400);
         $("#pic"+winner).toggleClass("active");
     }, 1500);
+
+    $("#rating").toggleClass("hidden");
 }
 
 
