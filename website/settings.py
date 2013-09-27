@@ -1,6 +1,7 @@
 # Django settings for CatMash project.
 import os
 
+LOGIN_URL='/users/login'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -115,6 +116,8 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
+    '/Users/Andrew/Documents/Catmash/users/templates',
+
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

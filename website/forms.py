@@ -34,4 +34,9 @@ class UserCreateForm(forms.Form):
         return new_user
 
 
-
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length = 30)
+    password = forms.CharField(max_length = 30)
+    def initiate_with_args(self,a,b):
+        self.username = a
+        self.password = b

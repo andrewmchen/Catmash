@@ -15,10 +15,7 @@ urlpatterns = patterns('',
     url(r'^static/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': os.getenv('STATIC_DIR')}),
-    url(r'^accounts/login$',login),
-    url(r'^accounts/logout$',logout),
-    url(r'^accounts/profile$','website.views.profile'),
-    url(r'^accounts/register$','website.views.register'),
+    url(r'^users',include('users.urls')),
     url(r'^$', 'catmash.views.index'),
 
 
