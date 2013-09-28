@@ -2,8 +2,13 @@
 
 {% block content %}
 
-
-
-{{username}}
+<p> Say Hi to your cats {{username}} </p>
+    
+    {% if has_pictures == 0 %} 
+        <p> You have no cats!? Upload some of your kitties? The internet is awaiting patiently!</p>
+        <a href="/users/upload"> Upload Button </a>
+    {% endif %}
+<p> {{name}} </p>
+<img src = {{url}} />
 
 {% endblock %}

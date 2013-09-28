@@ -39,3 +39,20 @@ class LoginForm(forms.Form):
     def initiate_with_args(self,a,b):
         self.username = a
         self.password = b
+
+
+class UploadForm(forms.Form):
+    url = forms.CharField(max_length = 100)
+    name = forms.CharField(max_length = 20)
+    def initiate_with_args(self,a,b):
+        self.url=a
+        self.name=b
+    def clean_url(self):
+        endings = [".png", ".jpg", ".jpeg", ".gif", ".tiff", ".bmp"]
+        for end in endings:
+            if end in self['url']:
+                return True
+        raise forms.ValidationError('Please put url of a picture (ends in .png/.jpg/etc...)')
+
+        
+        
