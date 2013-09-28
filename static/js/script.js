@@ -4,7 +4,8 @@ $(document).ready(function() {
 })
 
 function start() {
-    $(".picture").on( 'click', function() {
+    $(".picture").on('click', function() {
+        $(".picture").off('click');
         var picture1 = $(this).attr("src");
         var loser = ($(this).attr("id")=='pic1' ? "2" : "1")
         // messy as shit but it condenses two identical functions (nathan)
@@ -13,25 +14,20 @@ function start() {
         var returninfo = "picture1=" + picture1 + "&picture2=" + picture2;
         //message to return in http get
         $(this).toggleClass("active");
-        $("#selectiontemp").load("catmash", returninfo, function() 
+        $("#selectiontemp").load("catmash", returninfo, function()
             {
                 update(loser);
-                start();
             });
     })//click
 }//function
 
 function update(loser) {
-    $(".picture").off('click',".picture")
     var winner = (loser == "1" ? "2" : "1");
     console.log($("#data").text())
     var data = $("#data").text().split(",");
-    var delta = data.pop();
-    var lose = data.pop();
-    var win = data.pop();
-    console.log(lose);
-    console.log(win);
-
+    var delta = parseFloat(data.pop());
+    var lose = parseFloat(data.pop());
+    var win = parseFloat(data.pop());
 
     var win_rate = $("#rate" + winner);
     var lose_rate = $("#rate" + loser);
@@ -43,10 +39,31 @@ function update(loser) {
     lose_rate.addClass("red");
     lose_rate.text(lose);
 
+    setTimeout(function() {
+        jQuery({someValue: (win)}).animate({someValue: (win)+(delta)}, {
+        duration: 250,
+        easing:'swing', // can be anything
+        step: function() { // called on every step
+            // Update the element's text with rounded-up value:
+            win_rate.text(this.someValue.toFixed(5));
+            }
+        });
+
+        jQuery({someValue: (lose)}).animate({someValue: (lose)-(delta)}, {
+        duration: 250,
+        easing:'swing', // can be anything
+        step: function() { // called on every step
+            // Update the element's text with rounded-up value:
+            lose_rate.text(this.someValue.toFixed(5));
+            }
+        });
+    }, 500);
+
+
     $("#rating").attr("class","info"); // remove hidden on rating
 
     setTimeout(function() {
-        $("#selection").slideUp(300);
+        $("#selection").slideUp(200);
         setTimeout(function() {
             $("#pic1").replaceWith($("#p1")); // picture in selectiontemp
             $("#pic2").replaceWith($("#p2")); // picture in selectiontemp
@@ -54,12 +71,13 @@ function update(loser) {
             $("#p2").attr("id", "pic2");
             $("#selectiontemp").empty();
         }, 300);
-        $("#selection").fadeIn(400);
+        $("#selection").fadeIn(300);
         $("#pic"+winner).toggleClass("active");
         $("#rating").toggleClass("hidden"); // add hidden on rating
         win_rate.removeClass("green");
         lose_rate.removeClass("red");
-    }, 1500);
+        start();
+    }, 1200);
 
 }
 

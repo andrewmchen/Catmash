@@ -1,7 +1,7 @@
 from catmash.models import pictures
 
 # adjusts according to elo formula
-def adjust(winner,loser): #parameters are the urls
+def adjust(winner, loser): #parameters are the urls
     # get objects and extract ratings
     winner_object = pictures.objects.filter(url=winner)[0]
     winner_rating = winner_object.rating

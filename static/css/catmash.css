@@ -9,6 +9,12 @@ html, body {
 
 .hidden {
     visibility: hidden;
+    display: none;
+}
+
+.temp {
+    height: 0px;
+    width: 0px;
 }
 
 .noborder {
