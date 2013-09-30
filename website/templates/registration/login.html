@@ -6,12 +6,7 @@
 {% endif %}
 
 <form action="" method="post"> {% csrf_token %}
-    <div class="center">
-        <label for="username">User name:</label>
-        <input type="text" name="username" value="" id="username">
-    </div>
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password">
+    {{form.as_p}}
     <div class="center">
         <input type="submit" value="login" />
         <input type="hidden" name="next" value="{{ next|escape }}" />

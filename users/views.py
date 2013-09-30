@@ -17,19 +17,21 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username,password=password)
+        form = LoginForm(request.POST)
+        form.is_valid()
         if user is not None:
             if user.is_active:
                 loginmethod(request,user)
                 print "logged in"
                 return HttpResponseRedirect('/users/profile')
-    form = LoginForm()
+    else:
+        form = LoginForm()
     return render(request,"registration/login.html", {'form':form})
 
 def register(request):
     if request.method == 'POST':
         info = request.POST
-        form = UserCreateForm()
-        form.initiate_with_args(info.__getitem__('username'),info.__getitem__('password'),info.__getitem__('verify'),info.__getitem__('email'))
+        form = UserCreateForm(request.POST)
         if form.is_valid():
             print "Form is valid"
             new_user = form.save()
