@@ -1,7 +1,15 @@
 Catmash
 =======
 TODO:
-Add agree js functionality
-Add user backend functionality
-UI Components
-  Top JS components
+
+Functional Profile Pages.
+Top/Trending pages.
+Write unit tests?
+
+
+Future:
+
+Blog?
+Focus on picture sharing
+UI
+
