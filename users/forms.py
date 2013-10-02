@@ -2,14 +2,14 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
+from catmash.models import pictures
+import urllib2
 import re
 
-
 class UserCreateForm(forms.Form):
-
     username = forms.CharField(max_length = 30)
-    password = forms.CharField(max_length = 30)
-    verify = forms.CharField(max_length = 30)
+    password = forms.CharField(max_length = 30,widget=forms.PasswordInput())
+    verify = forms.CharField(max_length = 30,widget = forms.PasswordInput())
     email = forms.CharField(max_length = 30)
     """def __init__(self,a,b,c,d):
         self.username = a
@@ -54,7 +54,7 @@ class UserCreateForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length = 30)
-    password = forms.CharField(max_length = 30)
+    password = forms.CharField(max_length = 30,widget=forms.PasswordInput())
     def initiate_with_args(self,a,b):
         self.username = a
         self.password = b
@@ -73,10 +73,40 @@ class UploadForm(forms.Form):
         self.url=a
         self.name=b
     def clean_url(self):
+        url = re.findall('(?<=value=")(.*)(?=")',str(self['url']).encode('utf8'))[0]
+
+        """Test to see if url already in model"""
+        used = False
+        try:
+            count = pictures.objects.filter(url=url).count()
+            print count
+            if count>0:
+                used = True
+        except:
+            pass
+        if (used):
+            raise forms.ValidationError("It seems that you already have uploaded this cat")
+
+        """Test to see if picture exists"""
+        works = False
+        if "http://" not in url:
+            url = "http://"+url
+        try:
+            urllib2.urlopen(url)
+            works = True
+        except:
+            pass
+        if not works:
+            raise forms.ValidationError("It seems as if this is a bad url")
+            
+
+        """Test to see if endings correct"""
         endings = [".png", ".jpg", ".jpeg", ".gif", ".tiff", ".bmp"]
         for end in endings:
-            if end in self['url']:
+            if end in url:
+                print "Valide Ending"
                 return True
+        print "Not a valid ending"
         raise forms.ValidationError('Please put url of a picture (ends in .png/.jpg/etc...)')
 
         

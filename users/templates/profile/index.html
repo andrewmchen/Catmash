@@ -3,12 +3,22 @@
 {% block content %}
 
 <p> Say Hi to your cats {{username}} </p>
+<a href="/users/upload"> Upload Button </a>
     
-    {% if has_pictures == 0 %} 
+    {% for url, name, rating in picture_list %}
+        <div> 
+            <img src={{url}} width="100px" height="100px">
+        </div>
+        <div>
+            {{name}}
+        </div>
+        <div>
+            {{rating}}
+        </div>
+    {% empty %}
+            
         <p> You have no cats!? Upload some of your kitties? The internet is awaiting patiently!</p>
         <a href="/users/upload"> Upload Button </a>
-    {% endif %}
-<p> {{name}} </p>
-<img src = {{url}} />
+    {% endfor %}
 
 {% endblock %}

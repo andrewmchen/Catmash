@@ -11,7 +11,6 @@ from users.forms import UserCreateForm, LoginForm, UploadForm
 from django.contrib.auth.decorators import login_required
 from catmash.models import pictures
 
-
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -35,7 +34,7 @@ def register(request):
         if form.is_valid():
             print "Form is valid"
             new_user = form.save()
-            return HttpResponse.HttpResponseRedirect("/users/login")
+            return HttpResponseRedirect("/users/login")
         failed = True #makes a fail pop up
         print "Form Failed"
     else:
@@ -48,16 +47,24 @@ def logout(request):
     logoutmethod(request)
     return HttpResponseRedirect("/")
 
+
+
+
+
 def upload(request):
     if request.method == 'POST':
         url = request.POST['url']
         username = request.user.username
         name = request.POST['name']
         form = UploadForm(request.POST)
+        if "http://" not in url:
+            url = "http://"+url
+        print url
         if form.is_valid():
             pictures.objects.create(url = url,name=name, username=username,rating = 1200.0, clicks=0)
             print "Uploaded"
             #redirect to success page
+            return HttpResponseRedirect("/users/profile")
     else:
         form = UploadForm()
     return render(request, "profile/upload.html", {'form':form})
@@ -70,14 +77,14 @@ def upload(request):
 
 def profile(request):
     # see if the user has pictures 
-    number_of_pictures=pictures.objects.all().filter(username=request.user.username).count()
-    has_pictures=True
-    if number_of_pictures == 0:
-        has_pictures=False
-    cat = pictures.objects.all().filter(username = request.user.username)[:1].get()
-    url = cat.url
-    name = cat.name
-        
+    picture_list = list(pictures.objects.filter(username = request.user.username))
+    url_list = []
+    name_list = []
+    rating_list = []
+    for picture in picture_list:
+        url_list+=[picture.url]
+        name_list+=[picture.name]
+        rating_list+=[picture.rating]
 
-
-    return render(request, "profile/index.html", {'username':request.user.username,'has_pictures':has_pictures,'url':url,'name':name})
+    picture_list = zip(url_list, name_list, rating_list)
+    return render(request, "profile/index.html", {'username':request.user.username, 'picture_list':picture_list})
