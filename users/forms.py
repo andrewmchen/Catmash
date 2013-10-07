@@ -23,7 +23,7 @@ class UserCreateForm(forms.Form):
         self.verify = c
         self.email = d
     def clean_email(self):
-        if '@' not in self['email']:
+        if '@' not in str(self['email']):
             raise forms.ValidationError("Looks like that's not a valid email")
     def clean_username(self):
         used = False
