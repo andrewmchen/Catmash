@@ -1,20 +1,32 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <script type="text/javascript" src="/static/js/profile.js"></script>
+{% endblock %}
+
 {% block content %}
 
 <p> Say Hi to your cats {{username}} </p>
 <a href="/users/upload"> Upload Button </a>
     
     {% for url, name, rating in picture_list %}
-        <div> 
+    <div id = cat{{forloop.counter}}>
+        <div id = {{url}}> 
             <img src={{url}} width="100px" height="100px">
         </div>
+        <span class="edit">
+            Edit
+            <div style="display: none;"> Change Name </div>
+            <div id=delete style="display: none;"> Delete </div>
+        </span>
         <div>
             {{name}}
         </div>
         <div>
             {{rating}}
         </div>
+    </div>
+
     {% empty %}
             
         <p> You have no cats!? Upload some of your kitties? The internet is awaiting patiently!</p>

@@ -1,7 +1,10 @@
 //$( document ).ready(
 $(document).ready(function() {
     start();
-})
+    $("#logo").on('click', function(){
+        window.location.href = "/";
+    });
+});
 
 function start() {
     $(".picture").on('click', function() {
@@ -14,10 +17,9 @@ function start() {
         var returninfo = "picture1=" + picture1 + "&picture2=" + picture2;
         //message to return in http get
         $(this).toggleClass("active");
-        $("#selectiontemp").load("catmash", returninfo, function()
-            {
-                update(loser);
-            });
+        $("#selectiontemp").load("catmash", returninfo, function(){
+                                     update(loser);
+        });
     })//click
 }//function
 
