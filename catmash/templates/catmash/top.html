@@ -15,8 +15,15 @@
 	</div>
 	<table><tr><td>
 	<table id="list">
-
-	</table></td>
+        {% for index, picture in pictures_by_rating %}
+        <tr><td class="pictures">
+            <img class="topzoom" id="{{ index }}" src="{{picture.url}}" width=100px height=100px>
+            <!-- rating:{{picture.rating}}, clicks:{{picture.clicks}} -->
+        </td>
+        {% if index == 0 %}  {% endif %}
+        </tr>
+        {% endfor %}
+    </table></td>
 	<td><div id="zoom"></div></td></tr>
 	</table>
 
