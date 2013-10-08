@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<script type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
+{% extends "base.html" %}
+
+{% block head %}
 	<script type="text/javascript" src="static/js/top.js"></script>
-</head>
-<body>
+{% endblock %}
+
+
+{% block content %}
+
 	<div id="nextpage">
 		Next
 	</div>
@@ -18,7 +20,7 @@
 		{% endfor %}
 	</div>
 
-</body>
-</html>
 
+
+{% endblock %}
 
