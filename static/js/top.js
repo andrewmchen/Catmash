@@ -17,11 +17,12 @@ function start(number) {
 		});
 	});//delegate
 
+	attachhandler();
 };
 
 function zoompic(number) {
 	$("#zoom").slideUp(500);
-	$("#zoom").html("<img src='"+$("#"+number).attr("src")+"'>");
+	$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");
 	$("#zoom").slideDown(500);
 };
 
