@@ -25,6 +25,10 @@ class UserCreateForm(forms.Form):
     def clean_email(self):
         if '@' not in str(self['email']):
             raise forms.ValidationError("Looks like that's not a valid email")
+        form_email= str(self['email']).encode('utf8')
+        form_email = re.findall('(?<=value=")(.*)(?=")',form_email)
+        form_email = form_email[0]
+        return form_email
     def clean_username(self):
         used = False
         try:
@@ -44,10 +48,20 @@ class UserCreateForm(forms.Form):
             pass
         if used:
             raise forms.ValidationError("Your username seems to be taken already")
-        
+        return form_username
     def save(self):
-        new_user = User(username = self.username, email=self.email)
-        new_user.set_password(self.password)
+        form_username = str(self['username']).encode('utf8')
+        form_username = re.findall('(?<=value=")(.*)(?=")',form_username)
+        form_username = form_username[0]
+        form_email= str(self['email']).encode('utf8')
+        form_email = re.findall('(?<=value=")(.*)(?=")',form_email)
+        form_email = form_email[0]
+        form_password = str(self['password']).encode('utf8')
+
+        form_password = re.findall('(?<=value=")(.*)(?=")',form_password)
+        form_password = form_password[0]
+        new_user = User(username = form_username, email=form_email)
+        new_user.set_password(form_password)
         new_user.save()
         return new_user
 

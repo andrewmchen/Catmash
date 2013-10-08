@@ -5,8 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginmethod
 from django.contrib.auth import logout as logoutmethod
-
-
+from django.contrib.auth.models import User
 from users.forms import UserCreateForm, LoginForm, UploadForm
 from django.contrib.auth.decorators import login_required
 from catmash.models import pictures
@@ -33,7 +32,14 @@ def register(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             print "Form is valid"
-            new_user = form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            #new_user = User.objects.create_user(username=form.cleaned_data['username'],password = form.cleaned_data['password'], email = form.cleaned_data['email'])
+            new_user = User(username = username, email = email)
+            new_user.set_password(password)
+            new_user.save()
+
             return HttpResponseRedirect("/users/login")
         failed = True #makes a fail pop up
         print "Form Failed"
