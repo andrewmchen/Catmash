@@ -29,7 +29,7 @@ function zoompic(number) {
 	$("#zoom").slideUp(300);
 	setTimeout(function() {
 		$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");
-	}, 500);
+	}, 300);
 	$("#zoom").slideDown(300);
 };
 
