@@ -36,16 +36,16 @@ def index(request, extra=0):
         return render(request, 'catmash/index.html', context)
 
 def top(request, field='-rating'):
-    number=10   #number of entries to display
+    number = 6   #number of entries to display
     info = request.GET
     try: #try getting a number info item
         starting = int(info.__getitem__('number'))
         print starting
-        pictures_by_rating = pictures.objects.order_by(field)[starting:starting+10]
+        pictures_by_rating = pictures.objects.order_by(field)[starting:starting+number]
     except:
         print "did not get request"
-        pictures_by_rating = pictures.objects.order_by(field)[:10]
-    context = { "pictures_by_rating": enumerate(pictures_by_rating)}
+        pictures_by_rating = pictures.objects.order_by(field)[:number]
+    context = {"pictures_by_rating": enumerate(pictures_by_rating)}
     return render(request, 'catmash/top.html', context)
 
 def rate(request):
