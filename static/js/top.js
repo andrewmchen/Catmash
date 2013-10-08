@@ -6,8 +6,9 @@ function start(number) {
 	$("#nextpage").delegate(this, 'click', function() {
 		number = number + 6;
 		var returninfo = "number=" + number;
-		$("#list").load("top #list", returninfo);
-		attachhandler();
+		$("#list").load("top #list", returninfo, function() {
+			attachhandler();
+		});
 	});
 
 	$("#backpage").delegate(this, 'click', function() {
@@ -15,8 +16,8 @@ function start(number) {
 		var returninfo = "number=" + number;
 		$("#list").load("top #list", returninfo, function() {
 			if (number < 6) number = 0;
+			attachhandler();
 		});
-		attachhandler();
 	});//delegate
 };
 
