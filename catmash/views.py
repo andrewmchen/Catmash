@@ -45,7 +45,7 @@ def top(request, field='-rating'):
     except:
         print "did not get request"
         pictures_by_rating = pictures.objects.order_by(field)[:10]
-    context = { "pictures_by_rating": pictures_by_rating}
+    context = { "pictures_by_rating": enumerate(pictures_by_rating)}
     return render(request, 'catmash/top.html', context)
 
 def rate(request):

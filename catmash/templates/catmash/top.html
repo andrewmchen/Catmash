@@ -14,11 +14,16 @@
 		Back
 	</div>
 
-	<div id="list">
-		{% for picture in pictures_by_rating %}
-		<div class="pictures"><img src="{{picture.url}}" width=480px height=480px> rating:{{picture.rating}}, clicks:{{picture.clicks}}</div>
+	<table id="list">
+		{% for index, picture in pictures_by_rating %}
+		<tr><td class="pictures">
+			<img src="{{picture.url}}" width=100px height=100px>
+			rating:{{picture.rating}}, clicks:{{picture.clicks}}
+		</td>
+		{% if index == 0 %} <td rowspan=6 id="zoom"></td> {% endif %}
+		</tr>
 		{% endfor %}
-	</div>
+	</table>
 
 
 
