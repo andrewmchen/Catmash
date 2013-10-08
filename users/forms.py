@@ -79,6 +79,10 @@ class LoginForm(forms.Form):
         if user is None:
             raise forms.ValidationError("It seems that your username/password pair doesn't match")
 
+class UploadFile(forms.Form):
+    name = forms.CharField(max_length = 20)
+    file = forms.ImageField()
+
 
 class UploadForm(forms.Form):
     url = forms.CharField(max_length = 100)

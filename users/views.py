@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginmethod
 from django.contrib.auth import logout as logoutmethod
 from django.contrib.auth.models import User
-from users.forms import UserCreateForm, LoginForm, UploadForm
+from users.forms import UserCreateForm, LoginForm, UploadForm, UploadFile
 from django.contrib.auth.decorators import login_required
 from catmash.models import pictures
 
@@ -55,9 +55,24 @@ def logout(request):
 
 
 
-
-
 def upload(request):
+    if request.method == 'POST':
+        form = UploadFile(request.POST, request.FILES)
+        if form.is_valid():
+            username = request.user.username
+            print username+" has uploaded a picture"
+            picture = pictures(username=username, name=request.POST['name'] ,rating=1200.0, clicks=0, image = request.FILES['file'])
+            picture.save()
+            return HttpResponseRedirect("/users/profile/")
+    else:
+        form = UploadFile()
+    return render(request, "profile/upload.html", {'form':form})
+
+
+"""def upload(request):
+    ###################
+    Old upload view new one will use files instead
+    ###################
     if request.method == 'POST':
         url = request.POST['url']
         username = request.user.username
@@ -74,6 +89,8 @@ def upload(request):
     else:
         form = UploadForm()
     return render(request, "profile/upload.html", {'form':form})
+    
+    """
 
             
 

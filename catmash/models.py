@@ -5,6 +5,7 @@ import re
 # Create your models here.
 class pictures(models.Model):
     url = models.CharField(max_length=40)
+    image = models.ImageField(upload_to = 'images/%Y/%m/%d/')
     rating = models.DecimalField(max_digits=10, decimal_places=5)
     clicks = models.IntegerField()
     username = models.CharField(max_length=30)
