@@ -10,7 +10,7 @@ urlpatterns = patterns('',
         # Examples:
         #url(r'^$', include('picture.urls')),
         url(r'^catmash', include('catmash.urls')), #ajax fetch link
-        url(r'^top','catmash.views.top'),
+        url(r'^top$','catmash.views.top'),
         url(r'^toppic', 'catmash.views.top', {'piconly': True}),
         url(r'^trending$', 'catmash.views.top', { 'field': '-clicks'}),
         url(r'^static/(?P<path>.*)$',
