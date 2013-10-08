@@ -17,7 +17,7 @@
 	<table id="list">
 		{% for index, picture in pictures_by_rating %}
 		<tr><td class="pictures">
-			<img class="topzoom" id="{% index+1 %}" src="{{picture.url}}" width=100px height=100px>
+			<img class="topzoom" id="{% index %}" src="{{picture.url}}" width=100px height=100px>
 			<!-- rating:{{picture.rating}}, clicks:{{picture.clicks}} -->
 		</td>
 		{% if index == 0 %} <td rowspan=6 id="zoom"></td> {% endif %}
