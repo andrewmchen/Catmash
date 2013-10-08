@@ -24,6 +24,8 @@ function start(number) {
 };
 
 function zoompic(number) {
+	$(".thumbnail").toggleClass('active');
+	$("#"+number).toggleClass("active");
 	$("#zoom").slideUp(500);
 	setTimeout(function() {
 		$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");

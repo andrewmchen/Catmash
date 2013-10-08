@@ -84,6 +84,22 @@ html, body {
             box-shadow: 0 0 5px blue;
 }
 
+.thumbnail {
+    margin: 3px;
+    display: inline;
+    border: 1px solid transparent;
+    -webkit-transition: border 0.1s linear, box-shadow 0.1s linear;
+       -moz-transition: border 0.1s linear, box-shadow 0.1s linear;
+            transition: border 0.1s linear, box-shadow 0.1s linear;
+}
+
+.thumbnail.active {
+    border-color: blue;
+    -webkit-box-shadow: 0 0 2px blue;
+       -moz-box-shadow: 0 0 2px blue;
+            box-shadow: 0 0 2px blue;
+}
+
 .bottombar {
     position: fixed;
     bottom: 0;
@@ -100,4 +116,8 @@ html, body {
     margin-top: 15px;
     display: inline-block;
     position: center;
+}
+
+.top {
+    padding: 4px;
 }
