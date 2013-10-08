@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <script type="text/javascript" src="/static/js/upload.js"></script>
+    <script type="text/javascript" src="/static/js/jQuery.Jcrop.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.Jcrop.min.css" type="text/css" />
+
+{% endblock %}
+
+
 {% block content %}
 
 <form enctype="multipart/form-data" action = "/users/upload" method = "post"> {% csrf_token %}
     {{ form.as_p }}
+    <img id = "preview" style="display:none; height:480px; width:480px; " src="#" alt="preview" />
 <input type = "submit" value = "Submit" />
 </form>
 
