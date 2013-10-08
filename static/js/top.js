@@ -1,5 +1,6 @@
 $(document).ready( function() {
 	start(0)
+	attachhandler();
 });
 
 function start(number) {

@@ -20,7 +20,7 @@
 			<img class="topzoom" id="{{ index }}" src="{{picture.url}}" width=100px height=100px>
 			<!-- rating:{{picture.rating}}, clicks:{{picture.clicks}} -->
 		</td>
-		{% if index == 0 %} <td rowspan=6 id="zoom"></td> {% endif %}
+		{% if index == 0 %} <td rowspan=6><div id="zoom"></div></td> {% endif %}
 		</tr>
 		{% endfor %}
 	</table>
