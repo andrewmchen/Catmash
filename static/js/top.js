@@ -19,5 +19,11 @@ function start(number) {
 
 };
 
+function zoompic(number) {
+	$("#zoom").slideUp(200);
+	$("#zoom").html("<img src='"+$("#"+number).attr("src")+"'>");
+	$("#zoom").slideDown(200);
+}
+
 
 
