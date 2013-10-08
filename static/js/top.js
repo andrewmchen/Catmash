@@ -7,6 +7,7 @@ function start(number) {
 		number = number + 6;
 		var returninfo = "number=" + number;
 		$("#list").load("top #list", returninfo);
+		attachhandler();
 	});
 
 	$("#backpage").delegate(this, 'click', function() {
@@ -15,14 +16,15 @@ function start(number) {
 		$("#list").load("top #list", returninfo, function() {
 			if (number < 6) number = 0;
 		});
+		attachhandler();
 	});//delegate
-
-	attachhandler();
 };
 
 function zoompic(number) {
 	$("#zoom").slideUp(500);
-	$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");
+	setTimeout(function() {
+		$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");
+	}, 500);
 	$("#zoom").slideDown(500);
 };
 
@@ -30,6 +32,7 @@ function attachhandler() {
 	$(".topzoom").on("click", function() {
 		zoompic($(this).attr('id'));
 	});
+	zoompic(0);
 };
 
 
