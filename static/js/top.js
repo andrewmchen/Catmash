@@ -20,11 +20,16 @@ function start(number) {
 };
 
 function zoompic(number) {
-	//number = number - 1;
+	number = number - 1;
 	$("#zoom").slideUp(200);
 	$("#zoom").html("<img src='"+$("#"+number).attr("src")+"'>");
 	$("#zoom").slideDown(200);
-}
+};
 
+function attachhandler() {
+	$(".topzoom").on("click", function() {
+		zoompic($(this).attr('id'));
+	});
+};
 
 
