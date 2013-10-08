@@ -24,13 +24,13 @@ function start(number) {
 };
 
 function zoompic(number) {
-	$(".thumbnail").toggleClass('active');
+	$(".active").toggleClass('active');
 	$("#"+number).toggleClass("active");
-	$("#zoom").slideUp(500);
+	$("#zoom").slideUp(300);
 	setTimeout(function() {
 		$("#zoom").html("<img src='"+$("#"+number).attr("src")+"' height=600px width=600px>");
 	}, 500);
-	$("#zoom").slideDown(500);
+	$("#zoom").slideDown(300);
 };
 
 function attachhandler() {
