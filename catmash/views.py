@@ -35,7 +35,7 @@ def index(request, extra=0):
         context = {"picture1": picture1, "picture2" :picture2}
         return render(request, 'catmash/index.html', context)
 
-def top(request, field='-rating'):
+def toppic(request, field='-rating'):
     number = 6   #number of entries to display
     info = request.GET
     try: #try getting a number info item
@@ -46,7 +46,10 @@ def top(request, field='-rating'):
         print "did not get request"
         pictures_by_rating = pictures.objects.order_by(field)[:number]
     context = {"pictures_by_rating": enumerate(pictures_by_rating)}
-    return render(request, 'catmash/top.html', context)
+    return render(request, 'catmash/toppic.html', context)
+
+def top(request):
+    return render(request, 'catmash/top.html', {})
 
 def rate(request):
     info = request.GET
