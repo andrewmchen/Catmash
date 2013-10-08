@@ -1,6 +1,7 @@
 $(document).ready( function() {
 	start(0)
 	attachhandler();
+	zoompic(0);
 });
 
 function start(number) {
@@ -34,7 +35,6 @@ function attachhandler() {
 	$(".topzoom").on("click", function() {
 		zoompic($(this).attr('id'));
 	});
-	zoompic(0);
 };
 
 
